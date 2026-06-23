@@ -1,0 +1,15 @@
+{
+  "roi_top": 646,
+  "roi_left": 835,
+  "roi_width": 314,
+  "roi_height": 37,
+  "threshold": 150,
+  "option1_x": 0,
+  "option1_y": 0,
+  "confirm_x": 0,
+  "confirm_y": 0,
+  "portal_ocr_roi_top": 125,
+  "portal_ocr_roi_left": 147,
+  "portal_ocr_roi_width": 2055,
+  "portal_ocr_roi_height": 1063
+}

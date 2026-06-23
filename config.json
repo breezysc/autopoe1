@@ -1,0 +1,94 @@
+{
+  "NAV_CFG": {
+    "map_x_from_right": 6,
+    "map_y_from_top": 40,
+    "map_size": 380,
+    "threshold": 142,
+    "scan_radius": 44,
+    "sensitivity": 0.5,
+    "click_distance": 250,
+    "click_delay": 200,
+    "wall_thickness": 3,
+    "wall_follow_mode": 1,
+    "safe_padding": 15,
+    "inertia_weight": 150,
+    "search_radius": 100,
+    "blind_zone_threshold": 0.1,
+    "blind_zone_distance": 30,
+    "wall_follow_threshold": 0.4,
+    "wall_nearby_distance": 30,
+    "min_obstacle_width": 50,
+    "direction_lock_threshold": 0.5,
+    "direction_lock_time": 2.0,
+    "blind_zone_inertia_weight": 0.8,
+    "blind_zone_inertia_decay": 0.95,
+    "wall_distance_maintain": 20,
+    "wall_anchor_distance": 40,
+    "tangent_smoothing_factor": 0.3,
+    "global_inertia_weight": 0.8,
+    "global_inertia_decay": 0.9,
+    "coordinate_sync_threshold": 0.6,
+    "coordinate_sync_offset": 5,
+    "target_found_angle_range": 30,
+    "priority_lock_time": 1.0,
+    "priority_lock_distance": 50,
+    "obstacle_avoidance_distance": 40,
+    "dynamic_obstacle_threshold": 0.6,
+    "dynamic_obstacle_debounce": 0.5,
+    "click_radius": 100,
+    "character_height_offset": 10,
+    "icon_detection_threshold": 0.6,
+    "icon_stop_distance": 20,
+    "pole_brake_distance": 30,
+    "dynamic_click_distance": 50
+  },
+  "RITUAL_CFG": {
+    "ritual_points_v1": [
+      [
+        -2,
+        -51
+      ],
+      [
+        80,
+        -51
+      ],
+      [
+        169,
+        -47
+      ]
+    ],
+    "start_button_offset_v1": [
+      77,
+      35
+    ],
+    "ritual_points_v2": [
+      [
+        51,
+        185
+      ],
+      [
+        148,
+        184
+      ],
+      [
+        232,
+        190
+      ]
+    ],
+    "start_button_offset_v2": [
+      149,
+      283
+    ],
+    "priority": [
+      "通货",
+      "地图",
+      "幸运"
+    ],
+    "word2_x": 100,
+    "word2_y": 100,
+    "ocr_dx": 0,
+    "ocr_dy": 0,
+    "ocr_w": 300,
+    "ocr_h": 100
+  }
+}

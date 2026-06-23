@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .form-group {
+        margin-bottom: 15px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+      }
+      input, select {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+      }
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      #status {
+        margin-top: 20px;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .success {
+        background-color: #d4edda;
+        color: #155724;
+        border: 1px solid #c3e6cb;
+      }
+      .error {
+        background-color: #f8d7da;
+        color: #721c24;
+        border: 1px solid #f5c6cb;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>数据转置工具</h1>
+    <form id="transForm">
+      <div class="form-group">
+        <label for="spreadsheetId">源 SpreadSheet ID</label>
+        <input type="text" id="spreadsheetId" placeholder="请输入SpreadSheet ID" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="sheetName">选择 Sheet</label>
+        <select id="sheetName" required>
+          <option value="">请先输入SpreadSheet ID并点击获取</option>
+        </select>
+        <button type="button" onclick="getSheets()">获取Sheet列表</button>
+      </div>
+      
+      <div class="form-group">
+        <label for="range">复制范围（纵向）</label>
+        <input type="text" id="range" placeholder="例如：Q3:Q19" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="startCell">目标起始坐标</label>
+        <input type="text" id="startCell" placeholder="例如：B2" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="folderId">目标文件夹 ID</label>
+        <input type="text" id="folderId" placeholder="请输入目标文件夹ID" required>
+      </div>
+      
+      <button type="submit">执行转置操作</button>
+    </form>
+    
+    <div id="status"></div>
+    
+    <script>
+      function getSheets() {
+        const spreadsheetId = document.getElementById('spreadsheetId').value;
+        if (!spreadsheetId) {
+          showStatus('请先输入SpreadSheet ID', 'error');
+          return;
+        }
+        
+        google.script.run.withSuccessHandler(function(sheets) {
+          const sheetSelect = document.getElementById('sheetName');
+          sheetSelect.innerHTML = '';
+          if (sheets.length === 0) {
+            sheetSelect.innerHTML = '<option value="">未找到Sheet</option>';
+          } else {
+            sheets.forEach(function(sheet) {
+              const option = document.createElement('option');
+              option.value = sheet;
+              option.textContent = sheet;
+              sheetSelect.appendChild(option);
+            });
+          }
+        }).withFailureHandler(function(error) {
+          showStatus('获取Sheet列表失败: ' + error.message, 'error');
+        }).getSheets(spreadsheetId);
+      }
+      
+      function showStatus(message, type) {
+        const statusDiv = document.getElementById('status');
+        statusDiv.textContent = message;
+        statusDiv.className = type;
+      }
+      
+      document.getElementById('transForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const spreadsheetId = document.getElementById('spreadsheetId').value;
+        const sheetName = document.getElementById('sheetName').value;
+        const range = document.getElementById('range').value;
+        const startCell = document.getElementById('startCell').value;
+        const folderId = document.getElementById('folderId').value;
+        
+        showStatus('正在处理...', 'success');
+        
+        google.script.run.withSuccessHandler(function(result) {
+          if (result.success) {
+            showStatus('操作成功！新表格ID: ' + result.newSpreadsheetId, 'success');
+          } else {
+            showStatus('操作失败: ' + result.message, 'error');
+          }
+        }).withFailureHandler(function(error) {
+          showStatus('执行失败: ' + error.message, 'error');
+        }).processData(spreadsheetId, sheetName, range, startCell, folderId);
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "hotkeys": {
+    "inventory_dump": "Q",
+    "open_map_sequence": "W"
+  },
+  "coordinates": {
+    "stash": [0, 0],
+    "map_device": [0, 0],
+    "start_map_btn": [0, 0],
+    "npc_lily": [0, 0],
+    "portal": [0, 0]
+  },
+  "protected_slots": [[0, 0], [1, 0], [2, 0], [3, 0]],
+  "resource_paths": {
+    "stash_icon": "assets/stash.png",
+    "portal_icon": "assets/portal.png",
+    "map_device_icon": "assets/map_device.png",
+    "lily_icon": "assets/lily.png"
+  }
+}
